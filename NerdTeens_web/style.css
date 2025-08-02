@@ -81,10 +81,11 @@ body {
 }
 
 .cta-button {
+  display: inline-block;
   background: white;
   color: #579ad1;
   padding: 14px 28px;
-  margin-top: 25px;
+  margin-top: 10px;
   font-weight: bold;
   border-radius: 30px;
   text-decoration: none;
@@ -123,6 +124,11 @@ body {
 .section ul li {
   margin-bottom: 15px;
   font-size: 18px;
+}
+
+/* Abstand unter Absatztexten */
+.section p {
+  margin-bottom: 20px;
 }
 
 /* === Footer === */

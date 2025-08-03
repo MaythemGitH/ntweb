@@ -1,4 +1,19 @@
-/* === Reset & Basis === */
+:root {
+  --primary: #579ad1;
+  --primary-dark: #4178be;
+  --background: #e3eef6;
+  --text: #2e3a59;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --primary: #4da6ff;
+  --primary-dark: #2674c8;
+  --background: #121d2b;
+  --text: #dfe8f1;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +21,13 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #e3eef6;
-  color: #2e3a59;
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text);
   line-height: 1.6;
   padding: 20px;
 }
 
-/* === Container-Zentrierung === */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -24,12 +38,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #579ad1;
-  padding: 12px 30px;
+  background: var(--primary);
+  padding: 16px 30px;
   color: white;
   border-radius: 12px;
-  max-width: 900px;
-  margin: 0 auto 30px auto;
+  box-shadow: var(--shadow);
   flex-wrap: wrap;
 }
 
@@ -40,8 +53,9 @@ body {
   line-height: 1.1;
 }
 
-.logo-box span {
-  display: block;
+.logo-box a {
+  text-decoration: none;
+  color: white;
 }
 
 .main-nav ul {
@@ -61,17 +75,32 @@ body {
 
 .main-nav a:hover,
 .main-nav a.active {
-  background-color: #4178be;
+  background-color: var(--primary-dark);
 }
 
-/* === Hero Section Allgemein === */
+.theme-toggle {
+  background: white;
+  color: var(--primary);
+  border: none;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* === Hero === */
 .hero {
   background: linear-gradient(145deg, #b6d0e9, #d7e8f5);
   text-align: center;
   padding: 100px 20px 80px;
   border-radius: 40px;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
+  box-shadow: var(--shadow);
+  margin: 40px auto;
+}
+
+[data-theme="dark"] .hero {
+  background: linear-gradient(145deg, #1b2a40, #223349);
 }
 
 .hero h1 {
@@ -80,88 +109,42 @@ body {
   color: #1f2d42;
 }
 
+[data-theme="dark"] .hero h1 {
+  color: #dfe8f1;
+}
+
 .hero p {
   font-size: 20px;
   color: #44546a;
   margin-bottom: 30px;
 }
 
+[data-theme="dark"] .hero p {
+  color: #c0cad8;
+}
+
 .cta-button {
   background: white;
-  color: #579ad1;
+  color: var(--primary);
   padding: 14px 28px;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 30px;
   text-decoration: none;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
   display: inline-block;
 }
 
 .cta-button:hover {
   background: #f3f7fa;
+  transform: scale(1.05);
 }
 
-/* === Sections Allgemein === */
-.section {
-  max-width: 900px;
-  margin: 40px auto;
-  background: white;
-  padding: 40px 50px;
-  border-radius: 16px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.section.alt {
-  background: #f4f9fc;
-}
-
-/* Section Überschriften */
-.section h2 {
-  color: #35608a;
-  font-size: 30px;
-  margin-bottom: 24px;
-}
-
-/* Listen */
-.section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.section ul li {
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-/* === Footer === */
-.footer {
-  background: #35608a;
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-  margin-top: 40px;
-  border-radius: 12px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.footer a {
-  color: #d2ebff;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
-}
-
-/* === Responsive Anpassung === */
+/* === Responsive === */
 @media (max-width: 600px) {
   .navbar {
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
   }
 
   .main-nav ul {
@@ -169,44 +152,152 @@ body {
     gap: 12px;
   }
 
-  .hero,
-  .section {
-    padding: 30px 20px;
-  }
-
-  .about-text {
-    font-size: 16px;
+  .hero {
+    padding: 50px 20px;
   }
 }
+/* === Timeline === */
+.timeline {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 20px;
+  border-left: 4px solid var(--primary);
+}
 
-/* === Kleine Hero für Unterseiten === */
-.small-hero {
-  background: linear-gradient(135deg, #d9eaf8, #f0f7fd);
-  padding: 60px 20px 50px;
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timeline-date {
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.timeline-content {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .timeline-content {
+  background: #1e2c3d;
+  color: var(--text);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+/* === Slideshow === */
+.slideshow {
+  margin: 40px 0;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* === Projektkarten === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin: 60px 0;
+}
+
+.project-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px;
   text-align: center;
-  border-radius: 30px;
-  margin: 30px auto;
-  max-width: 900px;
-  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
 }
 
-.small-hero h1 {
-  font-size: 36px;
-  color: #1e395b;
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.project-card h3 {
   margin-bottom: 10px;
+  color: var(--primary-dark);
 }
 
-.small-hero p {
-  font-size: 18px;
-  color: #4e5c6e;
-  margin-top: 10px;
+[data-theme="dark"] .project-card {
+  background: #1e2c3d;
+  color: var(--text);
 }
 
-/* === About Text Styling === */
-.about-text {
-  font-size: 19px;
-  line-height: 1.9;
-  color: #2d3a4c;
-  text-align: justify;
-  margin-top: 10px;
+[data-theme="dark"] .project-card h3 {
+  color: #4da6ff;
+}
+.social-media {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.social-media p {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-icon {
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--text-color, #fff); /* Passe an dein Theme an */
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color, #fff); /* Passe an dein Theme an */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
 }
